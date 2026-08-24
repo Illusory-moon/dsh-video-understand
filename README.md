@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/dsh-video-understand)](https://www.npmjs.com/package/dsh-video-understand)
 [![GitHub stars](https://img.shields.io/github/stars/ilps2/dsh-video-understand)](https://github.com/ilps2/dsh-video-understand)
 
-低成本视频理解插件：给 dsh agent 注册 `video_understand` 工具——B站链接 / BV 号 / 本地视频 → AVIS 信息层（ASR 转写 + 场景结构 + 运动对象轨迹 + YOLO 语义）→ 摘要+问答。引擎自包含，无需外部依赖。
+低成本视频理解插件：给 dsh agent 注册 `video_understand` 工具——B站链接 / BV 号 / 本地视频 → AVIS 信息层（ASR 转写 + 场景结构 + 运动对象轨迹 + YOLO 语义）→ 摘要+问答。采用 Python 引擎：核心层需 faster-whisper / opencv / yt-dlp（约 200-300MB），可选语义层另需约 2GB 的 torch / transformers / ultralytics，内置 doctor --fix 一键建 venv 并装齐两者。
 
 ## 安装
 
@@ -74,7 +74,7 @@ dsh-video-understand/
 ├── cordis.patch.yml
 ├── dsh/
 │   └── index.js          # host 端：注册 video_understand 工具
-├── engine/               # 自包含引擎（无需外部依赖）
+├── engine/               # Python 引擎（核心层 + 可选语义层依赖）
 │   ├── understand_video.py
 │   ├── avis.py
 │   ├── visual_level.py
